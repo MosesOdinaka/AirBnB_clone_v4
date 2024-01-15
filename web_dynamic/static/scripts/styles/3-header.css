@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/** 
+ * Styles for the Footer Section
+ * Holberton Practice Styles
+ */
+
+footer {
+	/* Background color */
+	background: #FFFFFF;
+	
+	/* Height of the footer */
+	height: 60px;
+	
+	/* Line height within the footer */
+	line-height: 60px;
+	
+	/* Width of the footer */
+	width: 100%;
+	
+	/* Position from the bottom */
+	bottom: 0px;
+	
+	/* Position property */
+	position: relative;
+	
+	/* Text alignment within the footer */
+	text-align: center;
+	
+	/* Border at the top of the footer */
+	border-top: 1px solid #CCCCCC;
+}

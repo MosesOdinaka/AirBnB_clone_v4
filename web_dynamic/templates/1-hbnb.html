@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <!-- Meta Information--> 
+       <meta charset="utf-s">
+       <meta name="viewport" content="width=device-width">
+       <title>AirBnB clone</title>
+       <!-- Favicon -->
+       <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.png') + '?' + cache_id }}">
+       <!-- CSS Styles -->
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/common.css') + '?' + cache_id }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') + '?' + cache_id }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') + '?' + cache_id }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/filters.css') + '?' + cache_id }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/places.css') + '?' + cache_id }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/font-awesome.css') + '?' + cache_id }}">
+       <!-- jQuery -->
+       <script src="https://code.jQuery.com/jquery-3.2.1.min.js"></script>
+       <script src="{{ url_for('static', filename='scripts/hbnb.js') + '?' + cache_id }}"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header></header>
+        <main>
+            <div class="container">
+                <!-- Filters -->
+                <section class="filters">
+                    <!-- Locations -->
+                    <div class="locations">
+                        <h3>States</h3>
+                        <ul class="popover">
+                            {% for state in states|dictsort %}
+                            <h2>{{ state[0] }}</h2>
+                            <ul>
+                                {% for city in state[1].cities|sort(attribute='name') %}
+                                <li>{{ city.name }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Amenities -->
+                    <div class="amenities">
+                        <h3>Amenities</h3>
+                        <ul class="popover">
+                            {% for amenity in amens|sort(attribute='name') %}
+                            <li>
+                                <input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">
+                                    {{ amenity.name }}
+                                </input>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Search Button -->
+                    <button>Search</button>
+                </section>
+                <!-- Places -->
+                <section class="places">
+                    <h1>Places</h1>
+                    {% for place in places|sor(attribute='name') %}
+                    <article>
+                        <div class="title">
+                            <h2>{{ place.name }}</h2>
+                            <div class="price_by_night">
+                                {{ place.price_by_night }}
+                            </div>
+                        </div>
+                        <div class="information">
+                            <div class="max_guest">
+                                <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+                                <br />
+                                {{ place.max_guest }} Guests
+                            </div>
+                            <div class="number_rooms">
+                                <i class="fa fa-bed fa-3x" aria-hidden="true"></i>
+                                <br />
+                                {{ place.number_rooms }} Bedrooms
+                            </div>
+                            <div class="number_bathrooms">
+                                <i class="fa fa-bath fa-3x" aria-hidden="true"></i>
+                                <br />
+                                {{ place.number_bathrooms }} Bathroom
+                            </div>
+                        </div>
+                        <!-- User -->
+                        <div class="user">
+                            <strong>Owner: {{ users[place.user_id] }}</strong>
+                        </div>
+                        <!-- Description -->
+                        <div class="description">
+                            {{ place.description }}
+                        </div>
+                    </article>
+                    {% endfor %}
+                </section>
+            </div>
+        </main>
+        <!-- Footer -->
+        <footer>
+            AirBnB clone
+        </footer>
+    </body>
+</html>
